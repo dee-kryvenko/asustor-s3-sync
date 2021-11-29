@@ -5,7 +5,8 @@
             "Sid": "ListAllMyBuckets",
             "Effect": "Allow",
             "Action": [
-                "s3:ListAllMyBuckets"
+                "s3:ListAllMyBuckets",
+                "s3:GetBucketLocation"
             ],
             "Resource": "*"
         },
@@ -14,12 +15,16 @@
             "Effect": "Allow",
             "Action": [
                 "s3:ListBucket",
-                "s3:ListBucketMultipartUploads"
+                "s3:ListBucketMultipartUploads",
+                "s3:ListMultipartUploadParts"
             ],
-            "Resource": "${bucket_arn}"
+            "Resource": [
+                "${bucket_arn}",
+                "${bucket_arn}/*"
+            ]
         },
         {
-            "Sid": "PutObject",
+            "Sid": "Objects",
             "Effect": "Allow",
             "Action": [
                 "s3:GetObject",
