@@ -59,5 +59,5 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_access_key"></a> [access\_key](#output\_access\_key) | IAM User Access Key |
-| <a name="output_access_key_secret"></a> [access\_key\_secret](#output\_access\_key\_secret) | IAM User Access Key Secret (encrypted if iam\_pgp\_key was set) |
+| <a name="output_access_key_secret"></a> [access\_key\_secret](#output\_access\_key\_secret) | IAM User Access Key Secret (encrypted if `iam_pgp_key` was set) |
 | <a name="output_bucket"></a> [bucket](#output\_bucket) | Bucket name |

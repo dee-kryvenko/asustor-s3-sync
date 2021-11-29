@@ -61,5 +61,5 @@ output "access_key" {
 output "access_key_secret" {
   sensitive   = true
   value       = var.iam_pgp_key == null ? aws_iam_access_key.asustor.secret : aws_iam_access_key.asustor.encrypted_secret
-  description = "IAM User Access Key Secret (encrypted if iam_pgp_key was set)"
+  description = "IAM User Access Key Secret (encrypted if `iam_pgp_key` was set)"
 }
