@@ -34,14 +34,9 @@ output "bucket" {
   description = "Bucket name"
 }
 
-data "template_file" "sync_bucket_policy" {
-  template = file("${path.module}/s3_policy.json")
-  vars = {
-    bucket_arn = aws_s3_bucket.sync.arn
-  }
-}
-
 resource "aws_s3_bucket_policy" "sync" {
   bucket = aws_s3_bucket.sync.id
-  policy = data.template_file.sync_bucket_policy.rendered
+  policy = templatefile("${path.module}/s3_policy.json", {
+    bucket_arn = aws_s3_bucket.sync.arn
+  })
 }

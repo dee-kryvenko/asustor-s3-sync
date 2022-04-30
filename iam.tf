@@ -1,14 +1,9 @@
-data "template_file" "iam_policy" {
-  template = file("${path.module}/iam_policy.json")
-  vars = {
-    bucket_arn = aws_s3_bucket.sync.arn
-  }
-}
-
 resource "aws_iam_policy" "asustor" {
   name_prefix = "asustor-"
   description = "Asustor policy for bucket ${aws_s3_bucket.sync.id}"
-  policy      = data.template_file.iam_policy.rendered
+  policy = templatefile("${path.module}/iam_policy.json", {
+    bucket_arn = aws_s3_bucket.sync.arn
+  })
 }
 
 resource "random_string" "group_suffix" {
