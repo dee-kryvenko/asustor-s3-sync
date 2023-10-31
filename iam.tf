@@ -10,7 +10,7 @@ resource "random_string" "group_suffix" {
   length  = 16
   lower   = true
   upper   = false
-  number  = true
+  numeric = true
   special = false
 }
 
@@ -27,7 +27,7 @@ resource "random_string" "user_suffix" {
   length  = 16
   lower   = true
   upper   = false
-  number  = true
+  numeric = true
   special = false
 }
 
@@ -46,6 +46,10 @@ resource "aws_iam_user_group_membership" "asustor" {
 resource "aws_iam_access_key" "asustor" {
   user    = aws_iam_user.asustor.name
   pgp_key = var.iam_pgp_key
+
+  lifecycle {
+    ignore_changes = ["pgp_key"]
+  }
 }
 
 output "access_key" {
